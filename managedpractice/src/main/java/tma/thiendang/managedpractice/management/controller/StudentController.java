@@ -20,6 +20,13 @@ public class StudentController {
     @Autowired
     private CourseRepository courseRepository;
 
+    // GET STUDENT LIST
+    @GetMapping("/students")
+    public List<Student> getAllStudent() {
+        return studentRepository.findAll();
+    }
+
+    // GET STUDENT BY COURSE ID
     @GetMapping("/courses/{courseId}/students")
     public List<Student> getStudentByCourseId(@PathVariable int courseId) {
 
@@ -27,9 +34,10 @@ public class StudentController {
             throw new NotFoundException("Course not found!");
         }
 
-        return studentRepository.findByCourseId(courseId);
+        return studentRepository.findStudentByCourse_CourseID(courseId);
     }
 
+    // CREATE STUDENT WITH COURSE ID
     @PostMapping("/courses/{courseId}/students")
     public Student addStudent(@PathVariable int courseId, @Valid @RequestBody Student student) {
         return courseRepository.findById(courseId)
@@ -39,6 +47,7 @@ public class StudentController {
                 }).orElseThrow(() -> new NotFoundException("Student not found!"));
     }
 
+    // UPDATE STUDENT BY STUDENT ID AND COURSE ID
     @PutMapping("/courses/{courseId}/students/{studentId}")
     public Student updateStudent(@PathVariable int courseId,
                                        @PathVariable int studentId,
@@ -58,6 +67,7 @@ public class StudentController {
                 }).orElseThrow(() -> new NotFoundException("Student not found!"));
     }
 
+    // DELETE STDUENT BY STUDENT ID AND COURSE ID
     @DeleteMapping("/courses/{courseId}/students/{studentId}")
     public String deleteStudent(@PathVariable int courseId,
                                    @PathVariable int studentId) {

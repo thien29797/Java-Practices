@@ -15,7 +15,7 @@ public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int studentID;
+    private Integer studentID;
 
     @Column(name = "full_name")
     private String fullName;
@@ -34,22 +34,20 @@ public class Student implements Serializable {
     @JsonIgnore
     private Course course;
 
-    public Student() {
-
-    }
+    public Student() {}
 
     public Student(String fullName, String dateOfBirth, String phoneNumber, String address) {
-        this.fullName = fullName;
-        this.dateOfBirth = dateOfBirth;
-        this.phoneNumber = phoneNumber;
         this.address = address;
+        this.dateOfBirth = dateOfBirth;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
     }
 
-    public int getStudentID() {
+    public Integer getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(int studentID) {
+    public void setStudentID(Integer studentID) {
         this.studentID = studentID;
     }
 

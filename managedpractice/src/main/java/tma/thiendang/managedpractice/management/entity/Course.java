@@ -15,7 +15,7 @@ public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int courseID;
+    private Integer courseID;
 
     @Column(name = "course_name")
     private String courseName;
@@ -26,7 +26,7 @@ public class Course implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     private Set<Student> studentList;
 
     public Course() {
@@ -39,11 +39,11 @@ public class Course implements Serializable {
         this.description = description;
     }
 
-    public int getCourseID() {
+    public Integer getCourseID() {
         return courseID;
     }
 
-    public void setCourseID(int courseID) {
+    public void setCourseID(Integer courseID) {
         this.courseID = courseID;
     }
 
