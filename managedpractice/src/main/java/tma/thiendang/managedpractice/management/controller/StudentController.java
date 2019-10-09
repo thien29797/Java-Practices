@@ -11,6 +11,7 @@ import tma.thiendang.managedpractice.management.repository.StudentRepository;
 import tma.thiendang.managedpractice.management.service.StudentService;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class StudentController {
 
     // GET STUDENT LIST
     @GetMapping("/students")
-    public ResponseEntity<List<Student>> getAllStudent() {
+    public ResponseEntity<List<Student>> getAllStudent() throws IOException {
         List<Student> studentList = studentService.getAllStudent();
         if (studentList != null) {
             return new ResponseEntity<List<Student>>(studentList, HttpStatus.OK);

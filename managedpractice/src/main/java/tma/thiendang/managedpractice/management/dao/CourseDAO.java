@@ -20,7 +20,12 @@ public class CourseDAO implements GenericDAO<Course> {
     }
 
     @Override
-    public Course update(int courseId, Course courseUpdated) {
+    public Course createById(Integer id, Course obj) {
+        return null;
+    }
+
+    @Override
+    public Course update(Integer courseId, Course courseUpdated) {
         return courseRepository.findById(courseId)
                 .map(course -> {
                     course.setCourseName(courseUpdated.getCourseName());
@@ -31,7 +36,22 @@ public class CourseDAO implements GenericDAO<Course> {
     }
 
     @Override
+    public Course updateByRelatedId(Integer relatedId, Integer id, Course obj) {
+        return null;
+    }
+
+    @Override
     public String delete(Course obj) {
+        return null;
+    }
+
+    @Override
+    public String deleteById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public String deleteByRelatedID(Integer relatedId, Integer id) {
         return null;
     }
 
@@ -55,12 +75,17 @@ public class CourseDAO implements GenericDAO<Course> {
     }
 
     @Override
+    public List<Course> findAllById(Integer id) {
+        return null;
+    }
+
+    @Override
     public List<String> findById() {
         return null;
     }
 
     @Override
-    public Course findOne(int courseId) {
+    public Course findOne(Integer courseId) {
         Optional<Course> optCourse = courseRepository.findById(courseId);
         if (optCourse.isPresent()) {
             return optCourse.get();

@@ -1,10 +1,8 @@
 package tma.thiendang.managedpractice.management.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tma.thiendang.managedpractice.management.dao.CourseDAO;
 import tma.thiendang.managedpractice.management.entity.Course;
-import tma.thiendang.managedpractice.management.repository.CourseRepository;
 
 import java.util.List;
 
