@@ -1,6 +1,7 @@
 package tma.thiendang.managedpractice.management.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import tma.thiendang.managedpractice.management.entity.Course;
 import tma.thiendang.managedpractice.management.exception.NotFoundException;
 import tma.thiendang.managedpractice.management.repository.CourseRepository;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class CourseDAO implements GenericDAO<Course> {
 
     @Autowired
@@ -102,5 +104,10 @@ public class CourseDAO implements GenericDAO<Course> {
     @Override
     public boolean createOrUpdate(Course obj) {
         return false;
+    }
+
+    @Override
+    public Integer countById(Integer id) {
+        return null;
     }
 }

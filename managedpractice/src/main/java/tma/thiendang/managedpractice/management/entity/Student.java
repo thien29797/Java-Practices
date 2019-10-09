@@ -6,9 +6,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 @Entity
 @Table(name = "student")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
+@AllArgsConstructor
 public class Student implements Serializable {
 
     private static final long serialVersionUID = 1L;

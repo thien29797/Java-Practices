@@ -1,6 +1,8 @@
 package tma.thiendang.managedpractice.management.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +11,8 @@ import java.util.Set;
 @Entity
 @Table(name = "course")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
+@AllArgsConstructor
 public class Course implements Serializable {
 
     private static final long serialVersionUID = 1L;

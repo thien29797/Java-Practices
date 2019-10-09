@@ -5,9 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tma.thiendang.managedpractice.management.entity.Student;
-import tma.thiendang.managedpractice.management.exception.NotFoundException;
-import tma.thiendang.managedpractice.management.repository.CourseRepository;
-import tma.thiendang.managedpractice.management.repository.StudentRepository;
 import tma.thiendang.managedpractice.management.service.StudentService;
 
 import javax.validation.Valid;
@@ -83,6 +80,17 @@ public class StudentController {
         }
         else {
             return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/count/{courseId}")
+    public ResponseEntity<Integer> countStudent(@PathVariable int courseId) {
+        int studentAmount = studentService.countStudentInCourse(courseId);
+        if (studentAmount != 0) {
+            return new ResponseEntity<Integer>(studentAmount, HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
         }
     }
 }

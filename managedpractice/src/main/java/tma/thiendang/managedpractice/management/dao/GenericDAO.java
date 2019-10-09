@@ -35,4 +35,6 @@ public interface GenericDAO<T> extends Serializable {
     T getOne() throws IOException, Exception;
 
     boolean createOrUpdate(T obj);
+
+    Integer countById(Integer id);
 }

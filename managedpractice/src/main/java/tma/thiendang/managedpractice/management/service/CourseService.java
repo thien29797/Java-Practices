@@ -1,5 +1,6 @@
 package tma.thiendang.managedpractice.management.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tma.thiendang.managedpractice.management.dao.CourseDAO;
 import tma.thiendang.managedpractice.management.entity.Course;
@@ -9,11 +10,10 @@ import java.util.List;
 @Service
 public class CourseService {
 
+    @Autowired
     private CourseDAO courseDAO;
 
-    public List<Course> getAllCourse() {
-        return courseDAO.findAll();
-    }
+    public List<Course> getAllCourse() { return courseDAO.findAll(); }
 
     public Course getCourseByID(int courseId) {
         return courseDAO.findOne(courseId);

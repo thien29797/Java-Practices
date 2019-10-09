@@ -10,4 +10,7 @@ import java.util.List;
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     List<Student> findStudentByCourse_CourseID(int CourseID);
+
+    Integer countStudentByCourse_CourseID(int courseId);
+
 }
