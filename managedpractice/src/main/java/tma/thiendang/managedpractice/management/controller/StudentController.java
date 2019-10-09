@@ -1,11 +1,14 @@
 package tma.thiendang.managedpractice.management.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tma.thiendang.managedpractice.management.entity.Student;
 import tma.thiendang.managedpractice.management.exception.NotFoundException;
 import tma.thiendang.managedpractice.management.repository.CourseRepository;
 import tma.thiendang.managedpractice.management.repository.StudentRepository;
+import tma.thiendang.managedpractice.management.service.StudentService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -15,71 +18,70 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    private StudentRepository studentRepository;
-
-    @Autowired
-    private CourseRepository courseRepository;
+    private StudentService studentService;
 
     // GET STUDENT LIST
     @GetMapping("/students")
-    public List<Student> getAllStudent() {
-        return studentRepository.findAll();
+    public ResponseEntity<List<Student>> getAllStudent() {
+        List<Student> studentList = studentService.getAllStudent();
+        if (studentList != null) {
+            return new ResponseEntity<List<Student>>(studentList, HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<List<Student>>(HttpStatus.NO_CONTENT);
+        }
     }
 
     // GET STUDENT BY COURSE ID
     @GetMapping("/courses/{courseId}/students")
-    public List<Student> getStudentByCourseId(@PathVariable int courseId) {
-
-        if(!courseRepository.existsById(courseId)) {
-            throw new NotFoundException("Course not found!");
+    public ResponseEntity<List<Student>> getStudentByCourseId(@PathVariable int courseId) {
+        List<Student> studentList = studentService.getStudentByCourseId(courseId);
+        if (studentList != null) {
+            return new ResponseEntity<List<Student>>(studentList, HttpStatus.OK);
         }
-
-        return studentRepository.findStudentByCourse_CourseID(courseId);
+        else {
+            return new ResponseEntity<List<Student>>(HttpStatus.NO_CONTENT);
+        }
     }
 
     // CREATE STUDENT WITH COURSE ID
     @PostMapping("/courses/{courseId}/students")
-    public Student addStudent(@PathVariable int courseId, @Valid @RequestBody Student student) {
-        return courseRepository.findById(courseId)
-                .map(course -> {
-                    student.setCourse(course);
-                    return studentRepository.save(student);
-                }).orElseThrow(() -> new NotFoundException("Student not found!"));
+    public ResponseEntity<Student> addStudent(@PathVariable int courseId,
+                                              @Valid @RequestBody Student student) {
+        Student newStudentObj = studentService.addStudent(courseId, student);
+        if (newStudentObj != null) {
+            return new ResponseEntity<Student>(newStudentObj, HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<Student>(HttpStatus.CREATED);
+        }
     }
 
     // UPDATE STUDENT BY STUDENT ID AND COURSE ID
     @PutMapping("/courses/{courseId}/students/{studentId}")
-    public Student updateStudent(@PathVariable int courseId,
-                                       @PathVariable int studentId,
-                                       @Valid @RequestBody Student studentUpdated) {
-
-        if (!courseRepository.existsById(courseId)) {
-            throw new NotFoundException("Course not found!");
+    public ResponseEntity<Student> updateStudent(@PathVariable int courseId,
+                                                 @PathVariable int studentId,
+                                                 @Valid @RequestBody Student studentUpdated) {
+        Student updatedStudentObj = studentService.updateStudent(courseId, studentId, studentUpdated);
+        if (updatedStudentObj != null) {
+            return new ResponseEntity<Student>(updatedStudentObj, HttpStatus.OK);
         }
-
-        return studentRepository.findById(studentId)
-                .map(student -> {
-                    student.setAddress(studentUpdated.getAddress());
-                    student.setDateOfBirth(studentUpdated.getDateOfBirth());
-                    student.setFullName(studentUpdated.getFullName());
-                    student.setPhoneNumber(studentUpdated.getPhoneNumber());
-                    return studentRepository.save(student);
-                }).orElseThrow(() -> new NotFoundException("Student not found!"));
+        else {
+            return new ResponseEntity<Student>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     // DELETE STDUENT BY STUDENT ID AND COURSE ID
     @DeleteMapping("/courses/{courseId}/students/{studentId}")
-    public String deleteStudent(@PathVariable int courseId,
-                                   @PathVariable int studentId) {
+    public ResponseEntity<String> deleteStudent(@PathVariable int courseId,
+                                                  @PathVariable int studentId) {
 
-        if (!courseRepository.existsById(courseId)) {
-            throw new NotFoundException("Course not found!");
+        String deleteNotification = studentService.deleteStudent(courseId, studentId);
+        if (deleteNotification.compareTo("") == 0) {
+            return new ResponseEntity<String>(deleteNotification, HttpStatus.OK);
         }
-
-        return studentRepository.findById(studentId)
-                .map(student -> {
-                    studentRepository.delete(student);
-                    return "Deleted Successfully!";
-                }).orElseThrow(() -> new NotFoundException("Student not found!"));
+        else {
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
