@@ -6,19 +6,21 @@ import java.util.List;
 
 public interface GenericDAO<T> extends Serializable {
 
-    boolean create(T obj);
+    T create(T obj);
 
-    boolean update(T obj);
+    T update(int id, T obj);
 
-    boolean delete(T obj);
+    String delete(T obj);
+
+    String deleteById(int id);
 
     boolean deleteIfExisted(Object id);
 
     List<T> findAll() throws IOException;
 
-    List<String> findAllIds();
+    List<String> findById();
 
-    T findOne(Object id);
+    T findOne(int id);
 
     T getOne() throws IOException, Exception;
 
