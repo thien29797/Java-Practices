@@ -1,28 +1,34 @@
 package pro.thiendang.ManageStudentScore.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.NaturalId;
-import pro.thiendang.ManageStudentScore.model.enums.Result;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.sql.Date;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "test_result")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class TestResult {
+@Data
+@AllArgsConstructor
+public class TestResult implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
+    @Column(name = "test_result_code")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long result_id;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "testResult", cascade = CascadeType.ALL)
     private Set<StudentInformation> studentInformationList;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "testResult", cascade = CascadeType.ALL)
     private Set<SubjectCategory> subjectCategoryList;
 
     @Column(name = "submit_date")
@@ -32,17 +38,22 @@ public class TestResult {
     @Size(min = 0, max = 10)
     private int score;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "result")
-    @NaturalId
-    private Result result;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "testresult_result",
+        joinColumns = @JoinColumn(name = "test_result_code"),
+        inverseJoinColumns = @JoinColumn(name = "result_id"))
+    private Set<Result> result = new HashSet<>();
 
-    public TestResult(Set<StudentInformation> studentInformationList, Set<SubjectCategory> subjectCategoryList, Date submit_date, @Size(min = 0, max = 10) int score, Result result) {
+    public TestResult(Set<StudentInformation> studentInformationList, Set<SubjectCategory> subjectCategoryList, Date submit_date, @Size(min = 0, max = 10) int score, Set<Result> result) {
         this.studentInformationList = studentInformationList;
         this.subjectCategoryList = subjectCategoryList;
         this.submit_date = submit_date;
         this.score = score;
         this.result = result;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Long getResult_id() {
@@ -85,11 +96,23 @@ public class TestResult {
         this.score = score;
     }
 
-    public Result getResult() {
+    public Set<Result> getResult() {
         return result;
     }
 
-    public void setResult(Result result) {
+    public void setResult(Set<Result> result) {
         this.result = result;
+    }
+
+    @Override
+    public String toString() {
+        return "TestResult{" +
+                "result_id=" + result_id +
+                ", studentInformationList=" + studentInformationList +
+                ", subjectCategoryList=" + subjectCategoryList +
+                ", submit_date=" + submit_date +
+                ", score=" + score +
+                ", result=" + result +
+                '}';
     }
 }

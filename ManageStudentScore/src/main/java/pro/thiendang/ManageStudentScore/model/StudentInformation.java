@@ -1,10 +1,16 @@
 package pro.thiendang.ManageStudentScore.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
+import java.io.Serializable;
+import java.text.Format;
 
 @Entity
 @Table(name = "student_information", uniqueConstraints = {
@@ -16,10 +22,14 @@ import javax.persistence.*;
         })
 })
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class StudentInformation {
+@Data
+@AllArgsConstructor
+public class StudentInformation implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(length = 10)
+    @Column(name = "student_code", length = 10)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long student_code;
 
@@ -34,10 +44,9 @@ public class StudentInformation {
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "result_id", nullable = false)
+    @JoinColumn(name = "test_result_code", nullable = false)
     @JsonIgnore
     private TestResult testResult;
-
 
     public StudentInformation(String first_name, String last_name, @Email String email, TestResult testResult) {
         this.first_name = first_name;

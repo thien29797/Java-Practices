@@ -1,6 +1,6 @@
 package pro.thiendang.ManageStudentScore.model.enums;
 
-public enum Result {
+public enum ResultEnum {
     PASSED,
     FAILED
 }

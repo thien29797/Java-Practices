@@ -1,8 +1,12 @@
 package pro.thiendang.ManageStudentScore.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "subject_category", uniqueConstraints = {
@@ -10,24 +14,29 @@ import javax.persistence.*;
                 "category_code"
         })
 })
-public class SubjectCategory {
+@Data
+@AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class SubjectCategory implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(length = 10)
+    @Column(name = "category_code", length = 10)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long category_code;
 
     @Column(name = "category_name")
     private String category_name;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "result_id", nullable = false)
+    @ManyToOne
     @JsonIgnore
+    @JoinColumn(name = "test_result_code")
     private TestResult testResult;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "subject_id", nullable = false)
+    @ManyToOne
     @JsonIgnore
+    @JoinColumn(name = "test_subject_code")
     private TestSubject testSubject;
 
     public SubjectCategory(String category_name, TestResult testResult, TestSubject testSubject) {
