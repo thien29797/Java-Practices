@@ -6,10 +6,11 @@ import pro.thiendang.ManageStudentScore.model.enums.DurationEnum;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "duration")
+@Table(name = "duration_data")
 public class Duration {
 
     @Id
+    @Column(name = "duration_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

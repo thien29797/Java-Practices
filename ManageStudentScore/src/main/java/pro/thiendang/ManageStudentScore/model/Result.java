@@ -6,10 +6,11 @@ import pro.thiendang.ManageStudentScore.model.enums.ResultEnum;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "result")
+@Table(name = "result_data")
 public class Result {
 
     @Id
+    @Column(name = "result_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

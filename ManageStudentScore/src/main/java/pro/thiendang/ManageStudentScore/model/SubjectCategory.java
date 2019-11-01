@@ -31,18 +31,16 @@ public class SubjectCategory implements Serializable {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "test_result_code")
-    private TestResult testResult;
-
-    @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "test_subject_code")
     private TestSubject testSubject;
 
-    public SubjectCategory(String category_name, TestResult testResult, TestSubject testSubject) {
+    public SubjectCategory(String category_name, TestSubject testSubject) {
         this.category_name = category_name;
-        this.testResult = testResult;
         this.testSubject = testSubject;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Long getCategory_code() {
@@ -61,19 +59,20 @@ public class SubjectCategory implements Serializable {
         this.category_name = category_name;
     }
 
-    public TestResult getTestResult() {
-        return testResult;
-    }
-
-    public void setTestResult(TestResult testResult) {
-        this.testResult = testResult;
-    }
-
     public TestSubject getTestSubject() {
         return testSubject;
     }
 
     public void setTestSubject(TestSubject testSubject) {
         this.testSubject = testSubject;
+    }
+
+    @Override
+    public String toString() {
+        return "SubjectCategory{" +
+                "category_code=" + category_code +
+                ", category_name='" + category_name + '\'' +
+                ", testSubject=" + testSubject +
+                '}';
     }
 }

@@ -1,5 +1,6 @@
 package pro.thiendang.ManageStudentScore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +23,7 @@ public class TestSubject implements Serializable {
     @Column(name = "test_subject_code")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long subject_id;
-    
+
     @Column(name = "test_name")
     private String test_name;
 
@@ -41,11 +42,17 @@ public class TestSubject implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "testSubject", cascade = CascadeType.ALL)
     private Set<SubjectCategory> subjectCategoryList;
 
-    public TestSubject(String test_name, Set<Result> type, Set<Result> duration, Set<SubjectCategory> subjectCategoryList) {
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "test_result_code", nullable = false)
+    @JsonIgnore
+    private TestResult testResult;
+
+    public TestSubject(String test_name, Set<Result> type, Set<Result> duration, Set<SubjectCategory> subjectCategoryList, TestResult testResult) {
         this.test_name = test_name;
         this.type = type;
         this.duration = duration;
         this.subjectCategoryList = subjectCategoryList;
+        this.testResult = testResult;
     }
 
     public static long getSerialVersionUID() {
@@ -92,6 +99,14 @@ public class TestSubject implements Serializable {
         this.subjectCategoryList = subjectCategoryList;
     }
 
+    public TestResult getTestResult() {
+        return testResult;
+    }
+
+    public void setTestResult(TestResult testResult) {
+        this.testResult = testResult;
+    }
+
     @Override
     public String toString() {
         return "TestSubject{" +
@@ -100,6 +115,7 @@ public class TestSubject implements Serializable {
                 ", type=" + type +
                 ", duration=" + duration +
                 ", subjectCategoryList=" + subjectCategoryList +
+                ", testResult=" + testResult +
                 '}';
     }
 }

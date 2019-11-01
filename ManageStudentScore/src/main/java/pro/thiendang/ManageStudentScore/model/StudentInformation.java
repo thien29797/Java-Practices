@@ -1,6 +1,5 @@
 package pro.thiendang.ManageStudentScore.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -8,17 +7,12 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
-import javax.validation.Constraint;
 import java.io.Serializable;
-import java.text.Format;
 
 @Entity
 @Table(name = "student_information", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
                 "student_code"
-        }),
-        @UniqueConstraint(columnNames = {
-                "email"
         })
 })
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -48,11 +42,14 @@ public class StudentInformation implements Serializable {
     @JsonIgnore
     private TestResult testResult;
 
-    public StudentInformation(String first_name, String last_name, @Email String email, TestResult testResult) {
+    public StudentInformation(String first_name, String last_name, @Email String email) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
-        this.testResult = testResult;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Long getStudent_code() {
@@ -87,11 +84,13 @@ public class StudentInformation implements Serializable {
         this.email = email;
     }
 
-    public TestResult getTestResult() {
-        return testResult;
-    }
-
-    public void setTestResult(TestResult testResult) {
-        this.testResult = testResult;
+    @Override
+    public String toString() {
+        return "StudentInformation{" +
+                "student_code=" + student_code +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

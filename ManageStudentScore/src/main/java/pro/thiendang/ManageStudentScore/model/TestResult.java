@@ -29,7 +29,7 @@ public class TestResult implements Serializable {
     private Set<StudentInformation> studentInformationList;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "testResult", cascade = CascadeType.ALL)
-    private Set<SubjectCategory> subjectCategoryList;
+    private Set<TestSubject> testSubjectList;
 
     @Column(name = "submit_date")
     private Date submit_date;
@@ -44,9 +44,9 @@ public class TestResult implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "result_id"))
     private Set<Result> result = new HashSet<>();
 
-    public TestResult(Set<StudentInformation> studentInformationList, Set<SubjectCategory> subjectCategoryList, Date submit_date, @Size(min = 0, max = 10) int score, Set<Result> result) {
+    public TestResult(Set<StudentInformation> studentInformationList, Set<TestSubject> testSubjectList, Date submit_date, @Size(min = 0, max = 10) int score, Set<Result> result) {
         this.studentInformationList = studentInformationList;
-        this.subjectCategoryList = subjectCategoryList;
+        this.testSubjectList = testSubjectList;
         this.submit_date = submit_date;
         this.score = score;
         this.result = result;
@@ -72,12 +72,12 @@ public class TestResult implements Serializable {
         this.studentInformationList = studentInformationList;
     }
 
-    public Set<SubjectCategory> getSubjectCategoryList() {
-        return subjectCategoryList;
+    public Set<TestSubject> getTestSubjectList() {
+        return testSubjectList;
     }
 
-    public void setSubjectCategoryList(Set<SubjectCategory> subjectCategoryList) {
-        this.subjectCategoryList = subjectCategoryList;
+    public void setTestSubjectList(Set<TestSubject> testSubjectList) {
+        this.testSubjectList = testSubjectList;
     }
 
     public Date getSubmit_date() {
@@ -109,7 +109,7 @@ public class TestResult implements Serializable {
         return "TestResult{" +
                 "result_id=" + result_id +
                 ", studentInformationList=" + studentInformationList +
-                ", subjectCategoryList=" + subjectCategoryList +
+                ", testSubjectList=" + testSubjectList +
                 ", submit_date=" + submit_date +
                 ", score=" + score +
                 ", result=" + result +
