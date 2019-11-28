@@ -1,0 +1,42 @@
+<div *ngIf="isLoggedIn; else loggedOut">
+  <h1 class="login-notifi">Logged in as {{roles}}</h1>
+</div>
+
+<ng-template #loggedOut>
+  <div class="container">
+    <div class="row vh-100">
+      <div class="col-lg-5 col-md-8 col-sm-10 m-auto text-center" style="max-width:450px;">
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <h5 class="title">Login to access your account</h5>
+          <div class="form-group">
+            <label class="username" id = "username" for="username">Username</label>
+            <input type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="form.username" #username="ngModel"
+              required />
+            <div *ngIf="f.submitted && username.invalid">
+              <div *ngIf="username.errors.required">Username is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="password" id = "password" for="password">Password</label>
+            <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="form.password" #password="ngModel"
+              required minlength="6" />
+            <div *ngIf="f.submitted && password.invalid">
+              <div *ngIf="password.errors.required">Password is required</div>
+              <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary btn-block medium mt-3">Login</button>
+            <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
+              Login failed: {{errorMessage}}
+            </div>
+          </div>
+        </form>
+        <hr />
+        <p class="medium mt-4 text-center">Don't have an account? <a href="signup" (click)="isLoggedIn = !isLoggedIn">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+

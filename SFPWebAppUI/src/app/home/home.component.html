@@ -1,0 +1,22 @@
+<div *ngIf="info.token; else loggedOut">
+  <h2 class="text-primary">Your Information</h2>
+  <div class="media">
+    <div class="media-left media-top">
+      <img src="assets/img/user.png" class="media-object" style="width:60px">
+    </div>
+    <div class="media-body">
+      <p>
+        <strong>Username:</strong> {{info.username}}<br/>
+        <strong>Roles:</strong> {{info.authorities}}<br />
+      </p>
+    </div>
+  </div>
+<!--  <p>-->
+<!--    -->
+<!--&lt;!&ndash;    <strong>Token:</strong> {{info.token}}.&ndash;&gt;-->
+<!--  </p>-->
+<!--  <button class="btn btn-secondary" (click)="logout()">Logout</button>-->
+</div>
+<ng-template #loggedOut>
+  <h1 class="home-notifi">Please Login</h1>
+</ng-template>

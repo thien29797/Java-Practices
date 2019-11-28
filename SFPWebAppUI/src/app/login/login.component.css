@@ -1,0 +1,35 @@
+.title {
+    font-size: 32px;
+    font-style: inherit;
+    color: green;
+}
+
+.row-col-sm-6 {
+    margin: 2px;
+    border-style: wave;
+}
+
+.container {
+  margin-top: 270px;
+  margin-left: 320px;
+  margin-outside: 50px;
+}
+
+.username {
+  font-size: 14pt;
+}
+
+.password {
+  font-size: 14pt;
+}
+
+.login-notifi {
+  color: blue;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+

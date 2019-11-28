@@ -1,0 +1,29 @@
+<div *ngIf="!isAuthenticate; else showuser">
+  <h4>
+    You don't login or don't have permission.<br/>
+    Please login or contact with your administration.
+  </h4>
+</div>
+
+<ng-template #showuser>
+  <div *ngIf="!isLoadingFailed" class="card">
+    <h5 class="card-header">Your Information</h5>
+    <div *ngFor="let item of userOutput| keyvalue" class="card-body">
+      <div *ngIf="authority === 'admin'">
+        <h5 *ngIf="item.key !== 'password'" class="card-title">{{item.key}}: {{item.value}}</h5>
+        <!-- <h5 class="card-title">{{item.key}}</h5>
+        <p class="card-text">{{item.value}}</p> -->
+      </div>
+      <div *ngIf="authority === 'user'">
+        <h5 *ngIf="(item.key !== 'password') && (item.key !== 'id')" class="card-title">{{item.key}}
+          : {{item.value}}</h5>
+        <!-- <h5 class="card-title">{{item.key}}</h5>
+        <p class="card-text">{{item.value}}</p> -->
+      </div>
+      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+  </div>
+  <div *ngIf="isLoadingFailed">
+    <p>Loading failed: {{errorMessage}}</p>
+  </div>
+</ng-template>

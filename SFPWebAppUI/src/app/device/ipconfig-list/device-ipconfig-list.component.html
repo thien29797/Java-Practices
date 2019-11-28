@@ -1,0 +1,16 @@
+<h3>Device IP Configure</h3>
+
+<div *ngIf="!isLogin; else showdeviceipconfigdata">
+  <h4>Please login.</h4>
+</div>
+
+<ng-template #showdeviceipconfigdata>
+  <div *ngIf="!isLoadingFailed">
+    <ul *ngFor="let item of deviceIpConfigOutput| keyvalue" class="list-group list-group-flush">
+      <li class="list-group-item">{{item.key}}: {{item.value}}</li>
+    </ul>
+  </div>
+  <div *ngIf="isLoadingFailed">
+    Loading failed: {{errorMessage}}
+  </div>
+</ng-template>
