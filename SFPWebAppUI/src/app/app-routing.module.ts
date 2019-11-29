@@ -14,6 +14,8 @@ import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { PmComponent } from './pm/pm.component';
 import { AdminComponent} from './admin/admin.component';
+import {AddUserComponent} from './user-list/add-user/add-user.component';
+import {EditUserComponent} from './user-list/edit-user/edit-user.component';
 
 const routes: Routes = [
     {
@@ -76,7 +78,14 @@ const routes: Routes = [
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'
-    }
+    },
+  {     path: 'add-user',
+        component: AddUserComponent
+  },
+  {
+        path: 'edit-user',
+        component: EditUserComponent
+  },
 ];
 
 @NgModule({

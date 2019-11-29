@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../login/login.service';
 import {DeviceService} from '../../show-device/device.service';
+import {Observable} from 'rxjs';
+import {DeviceInfo} from '../../models/device-info';
 
 @Component({
   selector: 'app-deviceInforSearching',

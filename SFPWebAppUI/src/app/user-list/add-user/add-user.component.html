@@ -1,0 +1,55 @@
+<h2>Create Account</h2>
+<div class="row col-sm-6" style="max-width:350px;">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label for="name">Your name</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
+      <div *ngIf="f.submitted && name.invalid">
+        <div *ngIf="name.errors.required">Name is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required email />
+      <div *ngIf="f.submitted && email.invalid">
+        <div *ngIf="email.errors.required">Email is required</div>
+        <div *ngIf="email.errors.email">Email must be a valid email address</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
+             required />
+      <div *ngIf="f.submitted && username.invalid">
+        <div *ngIf="username.errors.required">Username is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
+             required minlength="6" />
+      <div *ngIf="f.submitted && password.invalid">
+        <div *ngIf="password.errors.required">Password is required</div>
+        <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="role">Role</label>
+      <input type="text" class="form-control" name="role" placeholder="admin, pm, user" [(ngModel)]="form.role" #role="ngModel"
+             required />
+      <div *ngIf="f.submitted && role.invalid">
+        <div *ngIf="role.errors.required">Role is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary">Create Account</button>
+      <button class="btn btn-success" (click)="reload()" style="margin-left: 30px">Refresh</button>
+      <div *ngIf="f.submitted && isSignedUp" class="alert alert-success" style="margin-top: 20px">
+        Create Account Successfully!<br/>
+      </div>
+      <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning" style="margin-top: 20px">
+        Create Account failed!<br/>{{errorMessage}}
+      </div>
+    </div>
+  </form>
+</div>

@@ -26,14 +26,14 @@ export class UserService {
   }
 
   createUser(user: User) {
-    return this.http.post(this.baseUrl, user);
+    return this.http.post(`${this.baseUrl}`, user, httpOptions);
   }
 
   updateUser(user: User) {
-    return this.http.put(`${this.baseUrl}/${user.id}/${user}`, httpOptions);
+    return this.http.put(`${this.baseUrl}/${user.id}`, httpOptions);
   }
 
   deleteUserById(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`, httpOptions);
+    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
 }

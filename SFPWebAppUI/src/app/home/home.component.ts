@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { TokenStorageService } from '../auth/token-storage.service';
+import {User} from '../users/user';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +11,7 @@ import { TokenStorageService } from '../auth/token-storage.service';
 })
 export class HomeComponent implements OnInit {
   info: any;
+  user: Observable<User>;
 
   constructor(private token: TokenStorageService) { }
 
