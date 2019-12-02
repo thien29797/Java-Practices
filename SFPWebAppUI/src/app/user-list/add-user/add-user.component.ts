@@ -5,8 +5,6 @@ import {Router} from '@angular/router';
 import {User} from '../../users/user';
 import {AuthService} from '../../auth/auth.service';
 import {AccountInfo} from '../../models/account-info';
-import {Notifier} from '../../services/notifier.service';
-import {Alert, MyNotification} from '../../models/my-notification';
 
 @Component({
   selector: 'app-add-user',

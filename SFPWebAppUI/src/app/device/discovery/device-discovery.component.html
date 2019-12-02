@@ -1,4 +1,4 @@
-<h2>Discovery Device in Local Network</h2>
+<h1 style="color: blue">Discovery Device in Local Network</h1>
 <div *ngIf="!isLogin; else showdevices">
   <h2>Please login.</h2>
 </div>
@@ -6,7 +6,7 @@
   <form #f="ngForm" (ngSubmit)="onSubmit()" class="form-inline" name="form"
         novalidate>
     <div class="form-group">
-      <label class="label" for="rangeIp">Enter Range IP</label>
+      <label for="rangeIp">Enter Range IP</label>
       <div class="d-inline">
         <input #rangeIp="ngModel" [(ngModel)]="form.rangeIp" class="form-control" name="rangeIp"
                placeholder="0.0.0.1-254" required type="text"/>
