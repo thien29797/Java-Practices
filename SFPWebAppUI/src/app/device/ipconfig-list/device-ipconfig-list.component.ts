@@ -19,7 +19,12 @@ export class DeviceIpconfigListComponent implements OnInit {
   ) {
   }
 
+  reload() {
+    this.deviceIpConfigOutput = null;
+  }
+
   loadDeviceIpConfigOutput(): void {
+    this.reload();
     if (this.isLogin) {
       this.deviceService.getDeviceIpConfig().subscribe(
         data => {

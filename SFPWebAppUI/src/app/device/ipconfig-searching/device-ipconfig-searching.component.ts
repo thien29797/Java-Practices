@@ -23,8 +23,13 @@ export class DeviceIpconfigSearchingComponent implements OnInit {
   ) {
   }
 
+  reload() {
+    this.deviceIpOutput = null;
+  }
+
   onSubmit() {
     console.log(this.form);
+    this.reload();
     // this.isValid = /^10.220.20.2(0(4|5))|15|(42|8)|51$/.test(this.form.ip);
     this.isValid =
       /^([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})$/.test(this.form.ip);

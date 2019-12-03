@@ -27,6 +27,7 @@ import { EditUserComponent} from './user-list/edit-user/edit-user.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {DataTableModule} from 'angular-6-datatable';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
+import {ModalModule} from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
     AdminComponent,
     PmComponent,
     AddUserComponent,
-    EditUserComponent
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,11 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
     HttpClientModule,
     ReactiveFormsModule,
     DataTableModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ModalModule.forRoot(),
+  ],
+  exports: [
+    ModalModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

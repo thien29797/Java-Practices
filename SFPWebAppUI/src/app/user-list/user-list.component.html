@@ -6,7 +6,7 @@
 </div>
 <ng-template #showusers>
   <h1 style="color: blue"> User Information</h1>
-  <div class="row-col-lg-7" style = "background-color: darkgray">
+  <div class="row-col-lg-7" >
     <table class="table table-striped table-bordered" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
       <thead>
       <tr>
@@ -27,7 +27,27 @@
 <!--       <td>{{info.authorities}}</td>-->
         <td>
 <!--          <button class="btn btn-warning" (click)="editUser(info)" > Edit</button>-->
-          <button class="btn btn-danger" (click)="deleteUser(info.id)" style="margin-left: 20px;"> Delete</button>
+          <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal" style="margin-left: 20px;"> Delete</button>
+          <!-- Modal -->
+          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteModalLabel">Delete</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </td>
       </tr>
       </tbody>

@@ -25,7 +25,7 @@
   <hr/>
   <div *ngIf="isSubmit && !isLoadingFailed">
     <div *ngFor="let item of deviceIpOutput| keyvalue">
-      <h3 style="color: blue">{{item.key}}: {{item.value}}</h3>
+      <h4 style="color: dimgrey">{{item.key}}: {{item.value}}</h4>
     </div>
   </div>
   <div *ngIf="isSubmit && isLoadingFailed">

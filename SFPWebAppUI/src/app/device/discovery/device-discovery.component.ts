@@ -50,7 +50,12 @@ export class DeviceDiscoveryComponent implements OnInit {
     console.log(this.isValid);
   }
 
+  reload() {
+    this.deviceIpsInfor = null;
+  }
+
   onSubmit() {
+    this.reload();
     console.log(this.form);
     this.checkValid();
     if (this.isValid) {

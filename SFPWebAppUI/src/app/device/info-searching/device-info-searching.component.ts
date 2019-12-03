@@ -23,8 +23,13 @@ export class DeviceInfoSearchingComponent implements OnInit {
   ) {
   }
 
+  reload() {
+    this.deviceIpOutput = null;
+  }
+
   onSubmit() {
     console.log(this.form);
+    this.reload();
     this.isValid =
       /^([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})$/.test(this.form.ip);
     if (this.isValid) {
