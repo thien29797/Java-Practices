@@ -41,4 +41,8 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
+
+  reload() {
+    window.location.reload();
+  }
 }

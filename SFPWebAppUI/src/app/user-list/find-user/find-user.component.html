@@ -1,0 +1,29 @@
+<h1 style="color: blue">Find Account</h1>
+  <form #f="ngForm" (ngSubmit)="onSubmit()" class="form-inline" name="form"
+        novalidate>
+    <div class="form-group">
+      <label style="margin-bottom: 20px" style="color: lightseagreen">Enter Account IP</label>
+      <div class="d-inline">
+        <div class="form-inline" style="margin-bottom: 40px">
+          <label for="id" style="margin-right: 20px">Account ID</label>
+          <input type="text" class="form-control" name="id" [(ngModel)]="form.id" #id="ngModel" required />
+          <button class="btn btn-primary" type="submit" style="margin-left: 10px" (click)="onSubmit()">Confirm</button>
+          <div *ngIf="f.submitted && id.invalid">
+            <div *ngIf="id.errors.required">ID is required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--    <hr/>-->
+    <div class="media-body">
+      <p>
+        <strong>Username:</strong> {{info.username}}<br/>
+        <strong>Name:</strong> {{info.name}}<br/>
+        <strong>Email:</strong> {{info.email}}<br/>
+        <strong>Roles:</strong> {{info.authorities}}<br/>
+      </p>
+    </div>
+    <div *ngIf="f.submitted && isLoadingFailed">
+      Loading: {{errorMessage}}
+    </div>
+  </form>

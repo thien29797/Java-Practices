@@ -27,37 +27,6 @@ export class EditUserComponent implements OnInit {
               private router: Router,
               private userService: UserService,
               private authService: AuthService) { }
-
-  // ngOnInit() {
-  //   const userId = localStorage.getItem('editUserId');
-  //   if (!userId) {
-  //     alert('Invalid action.')
-  //     this.router.navigate(['users']);
-  //     return;
-  //   }
-  //   this.editForm = this.formBuilder.group({
-  //     id: [],
-  //     email: ['', Validators.required],
-  //     firstName: ['', Validators.required],
-  //     lastName: ['', Validators.required]
-  //   });
-  //   this.userService.getUser(+userId)
-  //     .subscribe( data => {
-  //       this.editForm.setValue(data);
-  //     });
-  // }
-  //
-  // onSubmit() {
-  //   this.userService.updateUser(this.editForm.value)
-  //     .pipe(first())
-  //     .subscribe(
-  //       data => {
-  //         this.router.navigate(['users']);
-  //       },
-  //       error => {
-  //         alert(error);
-  //       });
-  // }
   ngOnInit() {
 
   }

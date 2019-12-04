@@ -16,6 +16,7 @@ import { PmComponent } from './pm/pm.component';
 import { AdminComponent} from './admin/admin.component';
 import {AddUserComponent} from './user-list/add-user/add-user.component';
 import {EditUserComponent} from './user-list/edit-user/edit-user.component';
+import {FindUserComponent} from './user-list/find-user/find-user.component';
 
 const routes: Routes = [
     {
@@ -85,6 +86,10 @@ const routes: Routes = [
   {
         path: 'edit-user',
         component: EditUserComponent
+  },
+  {
+        path: 'find-user',
+        component: FindUserComponent
   },
 ];
 

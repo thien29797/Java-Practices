@@ -1,7 +1,7 @@
+<h1 style="color: blue">Register Account</h1>
 <div *ngIf="isSignedUp; else signupForm">
   Your registration is successful. Please login!
 </div>
-
 <ng-template #signupForm>
   <div class="row col-sm-6" style="max-width:350px;">
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary">Register</button>
+        <button class="btn btn-primary">Register Account</button>
         <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
           Signup failed!<br/>{{errorMessage}}
         </div>

@@ -24,6 +24,7 @@ import { PmComponent } from './pm/pm.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { AddUserComponent} from './user-list/add-user/add-user.component';
 import { EditUserComponent} from './user-list/edit-user/edit-user.component';
+import { FindUserComponent} from './user-list/find-user/find-user.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {DataTableModule} from 'angular-6-datatable';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
@@ -51,6 +52,7 @@ import {ModalModule} from 'ngx-bootstrap';
     PmComponent,
     AddUserComponent,
     EditUserComponent,
+    FindUserComponent,
   ],
   imports: [
     BrowserModule,

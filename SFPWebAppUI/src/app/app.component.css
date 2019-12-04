@@ -1,1 +1,8 @@
-
+.bg{
+  background-image: url('../assets/img/hi-tech.jpg');
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-color: lightblue;
+}
