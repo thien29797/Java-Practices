@@ -29,6 +29,19 @@ export class FindUserComponent implements OnInit {
   ngOnInit() {
   }
 
+  reload() {
+    window.location.reload();
+  }
+
+  deleteUser(id: number): void {
+    this.userService.deleteUserById(id)
+      .subscribe( data => {
+          console.log(data);
+          this.reload();
+        },
+        error => console.log(error));
+  }
+
   onSubmit() {
     console.log(this.form);
     this.userService.getUser(this.form.id).subscribe(

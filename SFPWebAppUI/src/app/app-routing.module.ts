@@ -17,6 +17,7 @@ import { AdminComponent} from './admin/admin.component';
 import {AddUserComponent} from './user-list/add-user/add-user.component';
 import {EditUserComponent} from './user-list/edit-user/edit-user.component';
 import {FindUserComponent} from './user-list/find-user/find-user.component';
+import {StreamVideoComponent} from './stream/stream-video.component';
 
 const routes: Routes = [
     {
@@ -90,6 +91,10 @@ const routes: Routes = [
   {
         path: 'find-user',
         component: FindUserComponent
+  },
+  {
+        path: 'stream-video',
+        component: StreamVideoComponent
   },
 ];
 

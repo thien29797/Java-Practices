@@ -49,13 +49,9 @@
           <td>{{deviceIpInfor.asic_slot_01}}</td>
           <td>{{deviceIpInfor.asic_slot_02}}</td>
           <td>{{deviceIpInfor.asic_slot_03}}</td>
-          <!-- <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete</button></td> -->
         </tr>
         </tbody>
       </table>
-      <!-- <div *ngFor="let item of deviceIpOutput| keyvalue">
-        <h5>{{item.key}}: {{item.value}}</h5>
-      </div> -->
     </div>
     <div *ngIf="f.submitted && isLoadingFailed">
       Loading: {{errorMessage}}

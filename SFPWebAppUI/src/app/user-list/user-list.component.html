@@ -14,7 +14,7 @@
         <th>Username</th>
         <th>Name</th>
         <th>Email</th>
-<!--        <th>Roles</th>-->
+        <th>Roles</th>
         <th>Action</th>
       </tr>
       </thead>
@@ -24,10 +24,13 @@
         <td>{{info.username}}</td>
         <td>{{info.name}}</td>
         <td>{{info.email}}</td>
-<!--       <td>{{info.authorities}}</td>-->
+       <td>
+         <i  *ngFor="let role of info.roles">
+           {{role.name}}
+         </i>
         <td>
-<!--          <button class="btn btn-warning" (click)="editUser(info)" > Edit</button>-->
-          <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal" style="margin-left: 20px;"> Delete</button>
+<!--          <button class="btn btn-warning" type="button" href="edit-user"> Edit</button>-->
+          <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal" style="margin-left: 20px;" (click)="deleteUser(info.id)"> Delete</button>
           <!-- Modal -->
           <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
