@@ -23,39 +23,39 @@
     </div>
     <hr/>
     <div *ngIf="f.submitted && !isLoadingFailed">
-      <div *ngFor="let item of deviceIpOutput| keyvalue">
-        <h4 style="color: dimgrey">{{item.key}}: {{item.value}}</h4>
-      </div>
-<!--      <table class="table table-striped table-bordered" >-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--          <th>Type</th>-->
-<!--          <th>Current Version</th>-->
-<!--          <th>Emsfp Version</th>-->
-<!--          <th>Hw Version</th>-->
-<!--          <th>Asic Version</th>-->
-<!--          <th>Sw Version</th>-->
-<!--          <th>Asic Slot 00</th>-->
-<!--          <th>Asic Slot 01</th>-->
-<!--          <th>Asic Slot 02</th>-->
-<!--          <th>Asic Slot 03</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr *ngFor="let info of deviceIpOutput | async">-->
-<!--          <td>{{info.type}}</td>-->
-<!--          <td>{{info.current_version}}</td>-->
-<!--          <td>{{info.emsfp_version}}</td>-->
-<!--          <td>{{info.hw_version}}</td>-->
-<!--          <td>{{info.asic_version}}</td>-->
-<!--          <td>{{info.sw_shal}}</td>-->
-<!--          <td>{{info.asic_slot_00}}</td>-->
-<!--          <td>{{info.asic_slot_01}}</td>-->
-<!--          <td>{{info.asic_slot_02}}</td>-->
-<!--          <td>{{info.asic_slot_03}}</td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--      </table>-->
+<!--      <div *ngFor="let item of deviceIpOutput| keyvalue">-->
+<!--        <h4 style="color: dimgrey">{{item.key}}: {{item.value}}</h4>-->
+<!--      </div>-->
+      <table class="table table-striped table-bordered" >
+        <thead>
+        <tr>
+          <th>Type</th>
+          <th>Current version</th>
+          <th>Emsfp version</th>
+          <th>Hw version</th>
+          <th>Asic version</th>
+          <th>Sw sha1</th>
+          <th>Asic slot 00</th>
+          <th>Asic slot 01</th>
+          <th>Asic slot 02</th>
+          <th>Asic slot 03</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{deviceIpOutput.type}}</td>
+          <td>{{deviceIpOutput.current_version}}</td>
+          <td>{{deviceIpOutput.emsfp_version}}</td>
+          <td>{{deviceIpOutput.hw_version}}</td>
+          <td>{{deviceIpOutput.asic_version}}</td>
+          <td>{{deviceIpOutput.sw_sha1}}</td>
+          <td>{{deviceIpOutput.asic_slot_00}}</td>
+          <td>{{deviceIpOutput.asic_slot_01}}</td>
+          <td>{{deviceIpOutput.asic_slot_02}}</td>
+          <td>{{deviceIpOutput.asic_slot_03}}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
     <div *ngIf="f.submitted && isLoadingFailed">
       Loading: {{errorMessage}}

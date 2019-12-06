@@ -24,9 +24,49 @@
   </form>
   <hr/>
   <div *ngIf="isSubmit && !isLoadingFailed">
-    <div *ngFor="let item of deviceIpOutput| keyvalue">
-      <h4 style="color: dimgrey">{{item.key}}: {{item.value}}</h4>
-    </div>
+<!--    <div *ngFor="let item of deviceIpOutput| keyvalue">-->
+<!--      <h4 style="color: dimgrey">{{item.key}}: {{item.value}}</h4>-->
+<!--    </div>-->
+    <table class="table table-striped table-bordered" >
+      <thead>
+      <tr>
+        <th>bootstatus1</th>
+        <th>bootstatus2</th>
+        <th>ctl_vlan_enable</th>
+        <th>ctl_vlan_id</th>
+        <th>ctl_vlan_pcp</th>
+        <th>data_vlan_enable</th>
+        <th>data_vlan_id</th>
+        <th>dhcp_enable</th>
+        <th>gateway</th>
+        <th>hostname</th>
+        <th>ip_addr</th>
+        <th>local_mac</th>
+        <th>port</th>
+        <th>subnet_mask</th>
+        <th>version</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{deviceIpOutput.bootstatus1}}</td>
+        <td>{{deviceIpOutput.bootstatus2}}</td>
+        <td>{{deviceIpOutput.ctl_vlan_enable}}</td>
+        <td>{{deviceIpOutput.ctl_vlan_id}}</td>
+        <td>{{deviceIpOutput.ctl_vlan_pcp}}</td>
+        <td>{{deviceIpOutput.data_vlan_enable}}</td>
+        <td>{{deviceIpOutput.data_vlan_id}}</td>
+        <td>{{deviceIpOutput.dhcp_enable}}</td>
+        <td>{{deviceIpOutput.gateway}}</td>
+        <td>{{deviceIpOutput.hostname}}</td>
+        <td>{{deviceIpOutput.ip_addr}}</td>
+        <td>{{deviceIpOutput.local_mac}}</td>
+        <td>{{deviceIpOutput.port}}</td>
+        <td>{{deviceIpOutput.subnet_mask}}</td>
+        <td>{{deviceIpOutput.version}}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
   <div *ngIf="isSubmit && isLoadingFailed">
     Loading: {{errorMessage}}
