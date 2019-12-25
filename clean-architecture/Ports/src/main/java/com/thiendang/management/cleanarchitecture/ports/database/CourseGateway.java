@@ -6,4 +6,5 @@ import java.util.Collection;
 
 public interface CourseGateway {
     Collection<Course> getAllExcludingCancelled();
+    void add(Course course);
 }

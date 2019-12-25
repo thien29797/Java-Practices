@@ -1,5 +1,6 @@
 package com.thiendang.management.cleanarchitecture.endpoints.getcourses;
 
+import com.thiendang.management.cleanarchitecture.endpoints.BaseEndpoint;
 import com.thiendang.management.cleanarchitecture.ports.presenters.CoursesViewModel;
 import com.thiendang.management.cleanarchitecture.ports.usecases.get.courses.GetCourseInputBoundary;
 import com.thiendang.management.cleanarchitecture.ports.presenters.CoursesOutputBoundary;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/courses")
-public class GetCoursesEndpoint implements BaseEndpoint{
+public class GetCoursesEndpoint implements BaseEndpoint {
     private final GetCourseInputBoundary useCase;
     private final CoursesOutputBoundary presenter;
 

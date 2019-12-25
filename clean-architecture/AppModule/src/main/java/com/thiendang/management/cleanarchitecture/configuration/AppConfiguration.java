@@ -3,9 +3,13 @@ package com.thiendang.management.cleanarchitecture.configuration;
 import com.thiendang.management.cleanarchitecture.data.jpa.JpaDatabase;
 import com.thiendang.management.cleanarchitecture.data.jpa.repositories.CourseRepository;
 import com.thiendang.management.cleanarchitecture.ports.database.Database;
+import com.thiendang.management.cleanarchitecture.ports.presenters.CourseCreatedOutputBoundary;
 import com.thiendang.management.cleanarchitecture.ports.presenters.CoursesOutputBoundary;
+import com.thiendang.management.cleanarchitecture.ports.usecases.addcourse.AddCourseInputBoundary;
 import com.thiendang.management.cleanarchitecture.ports.usecases.get.courses.GetCourseInputBoundary;
+import com.thiendang.management.cleanarchitecture.presenters.CourseCreatedPresenter;
 import com.thiendang.management.cleanarchitecture.presenters.CoursesPresenter;
+import com.thiendang.management.cleanarchitecture.usecases.addcourse.AddCourse;
 import com.thiendang.management.cleanarchitecture.usecases.get.courses.GetCourses;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +33,16 @@ public class AppConfiguration {
     @Bean
     public CoursesOutputBoundary coursesOutputBoundary() {
         return new CoursesPresenter();
+    }
+
+    @Bean
+    public AddCourseInputBoundary addCourseInputBoundary(CourseCreatedOutputBoundary courseCreatedOutputBoundary, Database database) {
+        return new AddCourse(courseCreatedOutputBoundary, database.courseGateway());
+    }
+
+    @Bean
+    public CourseCreatedOutputBoundary courseCreatedOutputBoundary() {
+        return new CourseCreatedPresenter();
     }
 
 }

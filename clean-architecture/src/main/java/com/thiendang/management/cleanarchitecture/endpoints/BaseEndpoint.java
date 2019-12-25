@@ -1,4 +1,4 @@
-package com.thiendang.management.cleanarchitecture.endpoints.getcourses;
+package com.thiendang.management.cleanarchitecture.endpoints;
 
 import com.thiendang.management.cleanarchitecture.exception.ErrorResponse;
 import io.swagger.annotations.Api;

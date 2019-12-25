@@ -26,6 +26,19 @@ public class JpaCourseGateway implements CourseGateway {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void add(Course course) {
+        CourseData courseData = CourseData
+                .builder()
+                .id(course.getCourseID())
+                .name(course.getCourseName())
+                .time(course.getCourseTime())
+                .description(course.getDescription())
+                .list(course.getStudentList())
+                .build();
+        courseRepository.save(courseData);
+    }
+
     private Course mapToCourse(Course courseData) {
         return new Course(
                 courseData.getCourseID(),
