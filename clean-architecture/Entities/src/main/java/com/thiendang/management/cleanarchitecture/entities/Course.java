@@ -1,5 +1,7 @@
 package com.thiendang.management.cleanarchitecture.entities;
 
+import com.thiendang.management.cleanarchitecture.data.jpa.data.StudentData;
+
 import java.util.Set;
 
 public class Course {
